@@ -19,8 +19,8 @@ class ConfigHelper
     public const FIELD_CONTRACTS_NUMBER = 'contracts_numbers';
     public const FIELD_MANUAL_CAPTURE_TRANSITION = 'manual_capture_transition';
 
-    public const FIELD_VALUE_ENVIRONMENT_HOMOLOGATION = 'https://api-sandbox.retail.monext.com/v1/';
-    public const FIELD_VALUE_ENVIRONMENT_PRODUCTION = 'TODO';
+    public const FIELD_VALUE_ENVIRONMENT_SANDBOX = 'https://api-sandbox.retail.monext.com/v1/';
+    public const FIELD_VALUE_ENVIRONMENT_PRODUCTION = 'https://api.retail.monext.com/v1/';
 
     public const FIELD_VALUE_CAPTURE_TYPE_AUTO = 'AUTOMATIC';
     public const FIELD_VALUE_CAPTURE_TYPE_MANUAL = 'MANUAL';

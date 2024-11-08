@@ -23,7 +23,7 @@ final class MonextGatewayConfigurationType extends AbstractType
             'label' => 'monext.form.environment.label',
             'required' => true,
             'choices' => [
-                'monext.form.environment.values.homologation' => ConfigHelper::FIELD_VALUE_ENVIRONMENT_HOMOLOGATION,
+                'monext.form.environment.values.sandbox' => ConfigHelper::FIELD_VALUE_ENVIRONMENT_SANDBOX,
                 'monext.form.environment.values.production' => ConfigHelper::FIELD_VALUE_ENVIRONMENT_PRODUCTION,
             ],
         ]);
