@@ -19,7 +19,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class Client
 {
-    public const SESSIONS_ENDPOINT = '/checkout/sessions';
+    public const SESSIONS_ENDPOINT = '/checkout/payments/sessions';
     public const TRANSACTIONS_ENDPOINT = '/checkout/transactions';
 
     public function __construct(

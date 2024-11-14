@@ -7,7 +7,7 @@ monext:
             label: "Environnement"
             values:
                 production: "Production"
-                homologation: "Homologation"
+                sandbox: "Sandbox"
         point_of_sale: "Point de vente"
         contracts_numbers:
             label: "Numéros de contrat"
