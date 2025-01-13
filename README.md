@@ -123,7 +123,7 @@ Here are the main configuration fields for the payment method:
 
 ---
 
-![Screenshot showing payment method configuration in backoffice](doc/monext_configuration.png)
+![Screenshot showing payment method configuration in backoffice](doc/monext_configuratio.png)
 
 ## Additional resources for developers
 
