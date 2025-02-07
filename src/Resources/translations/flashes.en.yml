@@ -3,10 +3,8 @@ sylius:
         failed: 'Payment has failed. No amount has been debited.'
 monext:
     return:
-        not_found: 'This payment has already been processed or does not exist.'
-        duplicate: "There seems to be an error in the processing of your payment. Please contact us."
         unknown: 'An error occurred while retrieving order info. Please check in a few minutes in you order history or contact us.'
         in_progress: 'Your payment is still being processed. Please check in a few minutes in you order history or contact us.'
-        cancelled: 'Your payment has been cancelled. Please contact us for more information.'
-        error: 'An error occurred while processing your payment.'
-        refused: 'Your payment has been refused. Please contact us for more information.'
+        cancelled: 'Payment has been cancelled.'
+        error: 'An error occurred, please retry. No payment has been made.'
+        refused: 'Payment has been refused.'
