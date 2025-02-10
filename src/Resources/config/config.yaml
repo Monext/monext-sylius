@@ -7,21 +7,28 @@ winzou_state_machine:
         callbacks:
             after:
                 monext_shipping_processor:
-                    on:   []
-                    do:   ['@MonextSyliusPlugin\Winzou\ShippingProcessor', 'capture']
+                    on:   ['ship']
+                    do:   ['@MonextSyliusPlugin\Winzou\ShippingProcessor', 'process']
                     args: ['object', 'event']
     sylius_payment:
         callbacks:
             before:
                 monext_complete_processor:
                     on:   ['complete']
-                    do:   ['@MonextSyliusPlugin\Winzou\CompleteProcessor', 'complete']
-                    args: ['object', 'event']
+                    do:   ['@MonextSyliusPlugin\Winzou\PaymentProcessor', 'complete']
+                    args: ['object']
                 monext_cancel_processor:
                     on:   ['cancel']
-                    do:   ['@MonextSyliusPlugin\Winzou\CancelProcessor', 'cancel']
+                    do:   ['@MonextSyliusPlugin\Winzou\PaymentProcessor', 'cancel']
                     args: ['object']
-                monext_refund_processor:
-                    on: ['refund']
-                    do: ['@MonextSyliusPlugin\Winzou\RefundProcessor', 'refund']
-                    args: ['object', 'event']
+                monext_refuns_processor:
+                    on:   ['refund']
+                    do:   ['@MonextSyliusPlugin\Winzou\PaymentProcessor', 'refund']
+                    args: ['object']
+
+sylius_ui:
+    events:
+        sylius.shop.checkout.header:
+            blocks:
+                after_legacy:
+                    template: "@MonextSyliusPlugin/Action/_widgetResources.html.twig"

@@ -15,7 +15,9 @@ final class MonextSyliusExtension extends AbstractResourceExtension implements P
 {
     use PrependDoctrineMigrationsTrait;
 
-    /** @psalm-suppress UnusedVariable */
+    /**
+     * @psalm-suppress UnusedVariable
+     */
     public function load(array $configs, ContainerBuilder $container): void
     {
         $loader = new YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
@@ -24,11 +26,13 @@ final class MonextSyliusExtension extends AbstractResourceExtension implements P
 
     public function prepend(ContainerBuilder $container): void
     {
-        $container->prependExtensionConfig('doctrine_migrations', [
-            'migrations_paths' => [
-                'MonextSyliusPlugin\Migrations' => __DIR__.'/../Migrations',
-            ],
-        ]);
+        $container->prependExtensionConfig(
+            'doctrine_migrations', [
+                'migrations_paths' => [
+                    'MonextSyliusPlugin\Migrations' => __DIR__.'/../Migrations',
+                ],
+            ]
+        );
     }
 
     protected function getMigrationsNamespace(): string

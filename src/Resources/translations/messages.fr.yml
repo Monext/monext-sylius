@@ -9,9 +9,14 @@ monext:
                 production: "Production"
                 sandbox: "Sandbox"
         point_of_sale: "Point de vente"
+        integration_type:
+            label: "Type d'intégration du formulaire de paiement"
+            values:
+                redirect: "Redirection"
+                inshop: "Intégré au site"
         contracts_numbers:
             label: "Numéros de contrat"
-            description: "Liste des numéros de contrat, séparés par des virgules"
+            description: "Liste des numéros de contrat, séparés par des virgules.<br/>Par défaut, tous les contrats s’affichent lors du paiement, sauf si une règle SmartDisplay est définie dans le BO Monext Online."
         capture_type:
             label: "Type de capture"
             values:

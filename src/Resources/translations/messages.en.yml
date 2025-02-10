@@ -9,9 +9,14 @@ monext:
                 production: "Production"
                 sandbox: "Sandbox"
         point_of_sale: "Point of sale"
+        integration_type:
+            label: "Payment form integration type"
+            values:
+                redirect: "Redirection"
+                inshop: "In-shop"
         contracts_numbers:
             label: "Contracts numbers"
-            description: "List of contracts numbers, separated by commas"    
+            description: "List of contracts numbers, separated by commas.<br/>By default, all contracts are displayed at the time of payment, unless a SmartDisplay rule is defined in the Monext Online BO."    
         capture_type:
             label: "Capture type"
             values:

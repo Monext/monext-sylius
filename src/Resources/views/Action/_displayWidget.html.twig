@@ -1,0 +1,30 @@
+{% extends '@SyliusShop/Checkout/layout.html.twig' %}
+
+{% block title %}{{ 'sylius.ui.complete'|trans }} | {{ parent() }}{% endblock %}
+
+{% block content %}
+    <div class="ui stackable grid">
+        <div class="eleven wide column">
+            <div class="ui padded segment" id="sylius-payment-capture">
+                <div class="PaylineWidget-container">
+                    <div id="PaylineWidget"
+                         data-token="{{ monext_token }}"
+                         data-template="column"
+                         data-auto-init="true"
+                         data-event-willinit="monextCallbackWillInit"
+                    ></div>
+                </div>
+            </div>
+        </div>
+        <div class="five wide column">
+            {{ sylius_template_event(['sylius.shop.checkout.sidebar'], _context) }}
+        </div>
+    </div>
+    <div class="ui hidden divider"></div>
+    <div class="ui two column grid">
+        <div class="column">
+            <a href="{{ cancel_url }}" class="ui large icon labeled button"><i class="arrow left icon"></i> Annuler le paiement</a>
+        </div>
+    </div>
+{% endblock %}
+

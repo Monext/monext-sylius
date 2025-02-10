@@ -2,43 +2,56 @@ services:
     _defaults:
         autowire: true
         autoconfigure: true
-        public: false
-        bind:
-            bool $unsecuredUrls: '%env(bool:SYLIUS_UNSECURED_URLS)%'
-        
+        public: true
+
     MonextSyliusPlugin\:
         resource: '../../'
-        exclude: '../../{Resources,DependencyInjection,MonextSyliusPlugin.php,Payum/MonextApi.php,Payum/Action/StatusAction.php}'
+        exclude: '../../{Resources, DependencyInjection, MonextSyliusPlugin.php}'
+    
+    Sylius\Component\Resource\Metadata\MetadataInterface:
+        factory: ['@sylius.resource_registry', 'get']
+        arguments: ['sylius.order']
+    
+    sylius.controller.payum:
+        alias: MonextSyliusPlugin\Payum\Controller\PayumController
 
     GuzzleHttp\Client: ~
-
+    
     monext_sylius_plugin.gateway_factory.monext:
         class: Payum\Core\Bridge\Symfony\Builder\GatewayFactoryBuilder
         tags:
             - { name: 'payum.gateway_factory_builder', factory: 'monext' }
         arguments:
             - 'MonextSyliusPlugin\Payum\MonextGatewayFactory'
-
+    
+    MonextSyliusPlugin\Helpers\MonextPayloadHelper:
+        arguments:
+            $localNotifyHost: '%env(default::LOCAL_NOTIFY_HOST)%'
+        
     MonextSyliusPlugin\Form\Type\MonextGatewayConfigurationType:
         tags:
             - { name: 'sylius.gateway_configuration_type', type: 'monext', label: 'Monext' }
-            - { name: 'form.type' }
 
     MonextSyliusPlugin\Payum\Action\CaptureAction:
-        public: true
         tags:
-            - { name: 'payum.action', factory: 'monext', alias: 'payum.action.capture' }
-    
-    MonextSyliusPlugin\Winzou\ShippingProcessor:
-        public: true
-        
-    MonextSyliusPlugin\Winzou\CompleteProcessor:
-        public: true
-    
-    MonextSyliusPlugin\Winzou\CancelProcessor: 
-        public: true
-        
-    MonextSyliusPlugin\Winzou\RefundProcessor:
-        public: true
-        
+            - { name: 'payum.action', factory: 'monext', prepend: true, alias: 'payum.action.capture'}
 
+    MonextSyliusPlugin\Payum\Action\NotifyAction:
+        tags:
+            - { name: 'payum.action', factory: 'monext', prepend: true, alias: 'payum.action.notify'}
+
+    MonextSyliusPlugin\Payum\Action\AuthorizeAction:
+        tags:
+            - { name: 'payum.action', factory: 'monext', prepend: true, alias: 'payum.action.authorize'}
+
+    MonextSyliusPlugin\Payum\Action\GetStatusAction:
+        tags:
+            - { name: 'payum.action', factory: 'monext', prepend: true, alias: 'payum.action.status'}
+
+    MonextSyliusPlugin\Payum\Action\CancelAction:
+        tags:
+            - { name: 'payum.action', factory: 'monext', prepend: true, alias: 'payum.action.cancel'}
+
+    MonextSyliusPlugin\Payum\Action\RefundAction:
+        tags:
+            - { name: 'payum.action', factory: 'monext', prepend: true, alias: 'payum.action.refund'}
