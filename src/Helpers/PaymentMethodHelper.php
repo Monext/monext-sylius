@@ -121,4 +121,13 @@ class PaymentMethodHelper
 
         return $paymentMethod->getGatewayConfig()->getConfig()[$configKey] ?? null;
     }
+
+    public static function isMonextProd(PaymentInterface $payment): bool
+    {
+        if (!static::isMonextPayment($payment)) {
+            return false;
+        }
+
+        return ConfigHelper::FIELD_VALUE_ENVIRONMENT_PRODUCTION === static::extractConfigValue($payment, ConfigHelper::FIELD_ENVIRONMENT);
+    }
 }

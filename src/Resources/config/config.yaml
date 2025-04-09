@@ -25,10 +25,3 @@ winzou_state_machine:
                     on:   ['refund']
                     do:   ['@MonextSyliusPlugin\Winzou\PaymentProcessor', 'refund']
                     args: ['object']
-
-sylius_ui:
-    events:
-        sylius.shop.checkout.header:
-            blocks:
-                after_legacy:
-                    template: "@MonextSyliusPlugin/Action/_widgetResources.html.twig"

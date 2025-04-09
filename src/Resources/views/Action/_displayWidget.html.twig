@@ -3,6 +3,13 @@
 {% block title %}{{ 'sylius.ui.complete'|trans }} | {{ parent() }}{% endblock %}
 
 {% block content %}
+    {% if is_prod %}
+        <link href="https://payment.cdn.payline.com/cdn/styles/widget-min.css" rel="stylesheet" />
+        <script src="https://payment.cdn.payline.com/cdn/scripts/widget-min.js"></script>
+    {% else %}
+        <link href="https://homologation-payment.cdn.payline.com/cdn/styles/widget-min.css" rel="stylesheet" />
+        <script src="https://homologation-payment.cdn.payline.com/cdn/scripts/widget-min.js"></script>
+    {%  endif %}
     <div class="ui stackable grid">
         <div class="eleven wide column">
             <div class="ui padded segment" id="sylius-payment-capture">

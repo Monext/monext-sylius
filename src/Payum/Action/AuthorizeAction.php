@@ -85,6 +85,7 @@ class AuthorizeAction implements ActionInterface, GatewayAwareInterface
         $renderTemplate = new RenderTemplate(
             '@MonextSyliusPlugin/Action/_displayWidget.html.twig', [
                 'monext_token' => PaymentDetailsHelper::getSessionToken($payment),
+                'is_prod' => PaymentMethodHelper::isMonextProd($payment),
                 'order' => $payment->getOrder(),
                 'cancel_url' => sprintf('%s&cancel_payment_request=true', $request->getToken()->getAfterUrl()),
             ]
